@@ -1,3 +1,15 @@
 body {
     text-align: center;
 }
+
+#add-train-btn {
+    background-color:navy;
+}
+
+body {
+    background-image: url("https://images6.alphacoders.com/423/423653.jpg");
+}
+
+.container{
+    opacity: 0.8;
+}
