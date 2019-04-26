@@ -1,3 +1,7 @@
 body {
     text-align: center;
 }
+
+#add-train-btn {
+    background-color:navy;
+}
