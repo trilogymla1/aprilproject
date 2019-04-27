@@ -38,12 +38,30 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode
     
     var URL = "https://data.cityofchicago.org/resource/pk66-w54g.json?reservation_start_date=" + dateInput + "T00:00:00.000";
 
-$.ajax({
-    url: URL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-  });
+    $.ajax({
+      url: URL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(URL);
+      console.log(response);
+      
+      var i;
+      for (i = 0; i < response.length; i++) { 
+        // div names for locations
+      $(".eventName").html("<h1>" + response[i].event_description + "</h1>");
+      $(".locationName").html("<h1>" + response[i].park_facility_name + "</h1>");
+      $(".eventBegin").html("<h1>" + response[i].reservation_start_date + "</h1>");
+      $(".eventBegin").html("<h1>" + response[i].reservation_end_date + "</h1>");
+      // $(".wind").text("Wind Speed: " + response.wind.speed);
+      
+      // Log the data in the console as well
+      console.log("Event: " + response[i].event_description);
+      console.log("Location: " + response[i].park_facility_name);
+      console.log("Begins: " + response[i].reservation_start_date);
+      console.log("Ends: " + response[i].reservation_end_date);
+        
+      }
+      });
 
   // .then(function(response) {
   
