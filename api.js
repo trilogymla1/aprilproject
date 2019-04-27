@@ -65,9 +65,7 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode
       }
       });
 
-  // .then(function(response) {
-  
-  // });
+
 
 // -------------------------------------- restaraunt
   // original url without user input
@@ -76,9 +74,28 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode
   
   var restaurantURL = "https://opentable.herokuapp.com/api/restaurants?zip=" + zipcodeInput;
 
-$.ajax({
-    url: restaurantURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-  })
+
+  $.ajax({
+      url: restaurantURL,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response);
+      console.log(response.restaurants[0].name);
+      var i;
+      for (i = 0; i < response.restaurants.length; i++) { 
+        $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
+        $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
+        $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
+        $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
+        $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
+
+        console.log("Name: " + response.restaurants[i].name);
+        console.log("Address: " + response.restaurants[i].address);
+        console.log("Price on a scale of 1-4: " + response.restaurants[i].price);
+        console.log("Reserve on Open Table: " + response.restaurants[i].reserve_url);
+        console.log(response.restaurants[i].image_url);
+
+      }
+      
+    
+    });
