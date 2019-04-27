@@ -2,13 +2,27 @@ body {
     text-align: center;
 }
 
-#add-train-btn {
-    background-color:navy;
+
+#submit-btn {
+    background-color: black;
+    color: whitesmoke;
+    font-size:12px;
 }
 
 body {
     background-image: url("https://images6.alphacoders.com/423/423653.jpg");
     background-attachment: fixed;
+}
+
+.col-sm-12.card-container {
+    display: inline-block;
+    width: 50%;
+}
+
+.col-md-12.card-container {
+    display: inline-block;
+    width: 49%;
+    margin: 20;
 }
 
 .container{
@@ -49,7 +63,7 @@ h3, p {
 	margin-bottom: 30px;
 }
 
-button {
+/* button {
 	border: none;
 	outline: none;
 	padding: 10px 20px;
@@ -58,7 +72,43 @@ button {
 	background: navy;
 	margin-bottom: 50px;
 	box-shadow: 0 3px 20px 0 #0000003b;
-}
+} */
 button:hover{
 	cursor: pointer;
 }
+
+.button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    color: whitesmoke;
+}
+    button:after, button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: 2px solid whitesmoke;
+        transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
+        transition: transform 0.2s, -webkit-transform 0.2s;
+      }
+      button:after {
+        -webkit-transform: translate(3px, 3px);
+                transform: translate(3px, 3px);
+      }
+      button:before {
+        -webkit-transform: translate(-3px, -3px);
+                transform: translate(-3px, -3px);
+      }
+      button:hover:after, button:hover:before {
+        -webkit-transform: translate(0);
+                transform: translate(0);
+      }
