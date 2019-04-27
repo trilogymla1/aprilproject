@@ -17,11 +17,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 </head>
 <body>
+
+    <header>
+        <div class="overlay">
+      <h1>Event Finder</h1>
+      <p>Find local events in the Chicago area based on the weather</p>
+        <br>
+        <button>Start Search</button>
+          </div>
+      </header>
+
     <div class="container">
-        <div class="jumbotron" style="background-color: navy; color: whitesmoke">
+
+        <!-- <div class="jumbotron" style="background-color: navy; color: whitesmoke">
           <h1 class="text-center">Event Finder</h1>
           <h3 class="text-center">April Project 1</h3>
-        </div>
+        </div> -->
+        <br>
         <div class="card">
           <div class="card-header">
             Event Options
@@ -42,6 +54,7 @@
             </table>
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12">
             <!-- Add Employee  -->
@@ -105,6 +118,27 @@
       </div>
        <!-- JavaScript -->
        <script src="api.js"></script>
-       <script src="app.js"></script>    
+       <script src="app.js"></script>   
+
+       <br>
+       
+      <style>
+          .footer {
+            position: fixed;
+            opacity:0.8;
+            height:1.5em;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color:navy;
+            color: whitesmoke;
+            text-align: center;
+            font-size: 12px;
+          }
+          </style>
+          
+          <div class="footer">
+            <p>Copyright: ALM</p>
+          </div>
 </body>
 </html>
