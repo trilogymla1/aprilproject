@@ -1,5 +1,7 @@
-var zipcodeInput = "60616"
-var dateInput = ""
+var zipcodeInput = "60616";
+var dayOfTheWeek = moment().format("dddd");
+console.log(dayOfTheWeek);
+console.log(moment().day(1).format("dddd"));
 // original url without user input
 // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=94040,us&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
@@ -26,9 +28,9 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode
 
       $(".day-1-forecast").text("Today: " + tempToday + "°F" + " | " + weatherToday)
       $(".day-2-forecast").text("Tomorrow: " + tempTomorrow + "°F" + " | " + weatherTomorrow)
-      $(".day-3-forecast").text("Temperature after: " + tempAfter + "°F" + " | " + weatherAfter)
-      $(".day-4-forecast").text("Temperature after that: " + tempAfterThat + "°F" + " | " + weatherAfterThat)
-      $(".day-5-forecast").text("Temperature even after that: " + tempEvenAfterThat + "°F" + " | " + weatherEvenAfterThat)
+      $(".day-3-forecast").text((moment().day(1).format("dddd"))+ ": " + tempAfter + "°F" + " | " + weatherAfter)
+      $(".day-4-forecast").text((moment().day(2).format("dddd"))+ ": " + tempAfterThat + "°F" + " | " + weatherAfterThat)
+      $(".day-5-forecast").text((moment().day(3).format("dddd"))+ ": " + tempEvenAfterThat + "°F" + " | " + weatherEvenAfterThat)
     });
 
 // ----------------------------------- park
