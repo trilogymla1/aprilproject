@@ -6,7 +6,7 @@ body {
 #submit-btn {
     background-color: black;
     color: whitesmoke;
-    font-size:12px;
+    font-size: 12px;
 }
 
 body {
@@ -25,42 +25,52 @@ body {
     margin: 20;
 }
 
-.container{
+.container {
     opacity: 0.8;
 }
 
-*{padding: 0; margin: 0; box-sizing: border-box;}
-body{height: 900px;}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 900px;
+}
+
 header {
     text-align: center;
     opacity: 0.8;
-	width: 100%;
-	height: auto;
-	background-size: cover;
-	background-attachment: fixed;
-	position: relative;
-	overflow: hidden;
-	border-radius: 0 0 85% 85% / 30%;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 85% 85% / 30%;
 }
-header .overlay{
-	width: 100%;
-	height: 100%;
-	padding: 50px;
-	color: #FFF;
-	text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient( 135deg, navy 10%, lightblue 100%);
-	
+
+header .overlay {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #333;
+    background-image: linear-gradient(135deg, navy 10%, lightblue 100%);
+
 }
 
 h1 {
-	font-family: 'Dancing Script', cursive;
-	font-size: 80px;
-	margin-bottom: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    margin-bottom: 30px;
 }
 
-h3, p {
-	font-family: 'Open Sans', sans-serif;
-	margin-bottom: 30px;
+h3,
+p {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 30px;
 }
 
 /* button {
@@ -73,8 +83,8 @@ h3, p {
 	margin-bottom: 50px;
 	box-shadow: 0 3px 20px 0 #0000003b;
 } */
-button:hover{
-	cursor: pointer;
+button:hover {
+    cursor: pointer;
 }
 
 .button {
@@ -88,27 +98,33 @@ button:hover{
     cursor: pointer;
     color: whitesmoke;
 }
-    button:after, button:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border: 2px solid whitesmoke;
-        transition: -webkit-transform 0.2s;
-        transition: transform 0.2s;
-        transition: transform 0.2s, -webkit-transform 0.2s;
-      }
-      button:after {
-        -webkit-transform: translate(3px, 3px);
-                transform: translate(3px, 3px);
-      }
-      button:before {
-        -webkit-transform: translate(-3px, -3px);
-                transform: translate(-3px, -3px);
-      }
-      button:hover:after, button:hover:before {
-        -webkit-transform: translate(0);
-                transform: translate(0);
-      }
+
+button:after,
+button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 2px solid whitesmoke;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+button:after {
+    -webkit-transform: translate(3px, 3px);
+    transform: translate(3px, 3px);
+}
+
+button:before {
+    -webkit-transform: translate(-3px, -3px);
+    transform: translate(-3px, -3px);
+}
+
+button:hover:after,
+button:hover:before {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+}
