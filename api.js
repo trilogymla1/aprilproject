@@ -46,21 +46,35 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode
     }).then(function(response) {
       console.log(URL);
       console.log(response);
-      
       var i;
-      for (i = 0; i < response.length; i++) { 
+      if (response.length > 20) {
+        console.log("many");
+      }
+
+      
+      for (i = response.length -1; i >= 0; i--) { 
+      var eventDiv = $("<div>");
+      var eventName = $("<p>").text("Event: " + response[i].event_description);
+
+      eventDiv.append(eventName);
+      $("#event-output").prepend(eventDiv);
+
+      
         // div names for locations
-      $(".eventName").html("<h1>" + response[i].event_description + "</h1>");
-      $(".locationName").html("<h1>" + response[i].park_facility_name + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_start_date + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_end_date + "</h1>");
-      // $(".wind").text("Wind Speed: " + response.wind.speed);
+      // $(".eventName").html(response[i].event_description);
+      // $(".locationName").html(response[i].park_facility_name);
+      // $(".eventBegin").html(response[i].reservation_start_date);
+      // $(".eventEnd").html(response[i].reservation_end_date);
+     
       
       // Log the data in the console as well
       console.log("Event: " + response[i].event_description);
       console.log("Location: " + response[i].park_facility_name);
       console.log("Begins: " + response[i].reservation_start_date);
       console.log("Ends: " + response[i].reservation_end_date);
+
+      
+
         
       }
       });
