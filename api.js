@@ -28,11 +28,13 @@ $.ajax({
 });
 
 // ----------------------------------- park
+
 $("#date-time-btn").on("click", function (event) {
   event.preventDefault();
+  var URL = "https://data.cityofchicago.org/resource/pk66-w54g.json?reservation_start_date=" + dateInput + "T00:00:00.000";
   var zipcodeInput = $("zip-input").val().trim();
   var dateInput = $("date-input").val().trim();
-
+  
     $.ajax({
       url: URL,
       method: "GET"
@@ -59,22 +61,11 @@ $("#date-time-btn").on("click", function (event) {
       // $(".eventBegin").html(response[i].reservation_start_date);
       // $(".eventEnd").html(response[i].reservation_end_date);
      
-      
-      // Log the data in the console as well
+            // Log the data in the console as well
       console.log("Event: " + response[i].event_description);
       console.log("Location: " + response[i].park_facility_name);
       console.log("Begins: " + response[i].reservation_start_date);
       console.log("Ends: " + response[i].reservation_end_date);
-<<<<<<< HEAD
-
-      
-
-        
-      }
-      });
-
-=======
->>>>>>> e91fd2d8059de18e3a644afe13b1b8e88bdbc781
 
     }
   });
