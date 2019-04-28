@@ -33,29 +33,48 @@ $("#date-time-btn").on("click", function (event) {
   var zipcodeInput = $("zip-input").val().trim();
   var dateInput = $("date-input").val().trim();
 
-  var URL = "https://data.cityofchicago.org/resource/pk66-w54g.json?reservation_start_date=" + dateInput + "T00:00:00.000";
+    $.ajax({
+      url: URL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(URL);
+      console.log(response);
+      var i;
+      if (response.length > 20) {
+        console.log("many");
+      }
 
-  $.ajax({
-    url: URL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(URL);
-    console.log(response);
+      
+      for (i = response.length -1; i >= 0; i--) { 
+      var eventDiv = $("<div>");
+      var eventName = $("<p>").text("Event: " + response[i].event_description);
 
-    var i;
-    for (i = 0; i < response.length; i++) {
-      // div names for locations
-      $(".eventName").html("<h1>" + response[i].event_description + "</h1>");
-      $(".locationName").html("<h1>" + response[i].park_facility_name + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_start_date + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_end_date + "</h1>");
-      // $(".wind").text("Wind Speed: " + response.wind.speed);
+      eventDiv.append(eventName);
+      $("#event-output").prepend(eventDiv);
 
+      
+        // div names for locations
+      // $(".eventName").html(response[i].event_description);
+      // $(".locationName").html(response[i].park_facility_name);
+      // $(".eventBegin").html(response[i].reservation_start_date);
+      // $(".eventEnd").html(response[i].reservation_end_date);
+     
+      
       // Log the data in the console as well
       console.log("Event: " + response[i].event_description);
       console.log("Location: " + response[i].park_facility_name);
       console.log("Begins: " + response[i].reservation_start_date);
       console.log("Ends: " + response[i].reservation_end_date);
+<<<<<<< HEAD
+
+      
+
+        
+      }
+      });
+
+=======
+>>>>>>> e91fd2d8059de18e3a644afe13b1b8e88bdbc781
 
     }
   });
