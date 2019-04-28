@@ -20,10 +20,10 @@
 
     <header>
         <div class="overlay">
-      <h1>Event Finder</h1>
+      <h1>Event Planner</h1>
       <p>Find local events in the Chicago area based on the weather</p>
         <br>
-        <button>Start Search</button>
+        <button class="button">Start Search</button>
           </div>
       </header>
 
@@ -34,53 +34,26 @@
           <h3 class="text-center">April Project 1</h3>
         </div> -->
         <br>
-        <div class="card">
-          <div class="card-header">
-            Event Options
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">City</th>
-                  <th scope="col">Neighborhood</th>
-                  <th scope="col">Weather</th>
-                  <th scope="col">Button</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-        </div>
         
-        <div class="row">
-          <div class="col-md-12">
+        
+        <div class="row1">
+          <div class="col-md-12 card-container">
             <!-- Add Employee  -->
             <div class="card mb-4">
               <div class="card-header">Event Search Parameters</div>
               <div class="card-body">
     
-                <!-- Entry Form -->
                 <form>
                   <div class="form-group">
                     <label for="date-input">Date</label>
-                    <input class="form-control" id="date-input" placeholder="05/03/2019" type="text">
+                    <input class="form-control" id="date-input" placeholder="04/28/2019" type="text">
                   </div>
                   <div class="form-group">
-                    <label for="destination-input">City</label>
-                    <input class="form-control" id="destination-input" placeholder="Chicago" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="frequency-input">Neighborhood</label>
-                    <input class="form-control" id="frequency-input" placeholder="West Loop" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="arrival-input">Weather</label>
-                    <input class="form-control" id="arrival-input" placeholder="70" type="text">
-                  </div>
-                  <button class="btn btn-primary float-right" id="add-train-btn">Submit</button>
+                    <label for="frequency-input">Zipcode</label>
+                    <input class="form-control" id="frequency-input" placeholder="60618" type="text">
+                  <button class="btn btn-primary float-right button" id="submit-btn">Submit</button>
+
+                  
                 </form>
     
               </div>
@@ -88,23 +61,7 @@
           </div>
         </div>
 
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                    <div class="card-header">
-                        Event Results
-                      </div>
-                 <div id="event-output">
-                    <!-- <div class="eventName"></div>
-                    <div class="locationName"></div>
-                    <div class="eventBegin"></div>
-                    <div class="eventEnd"></div> -->
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
+         <div class="col-sm-12 card-container">
               <div class="card">
                 <div class="card-body">
                     <div class="card-header">
@@ -119,8 +76,37 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        Event Results
+                      </div>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+              </div>
+            </div>
+           
     
-    
+          <div class="card">
+              <div class="card-header">
+                Event Options
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Zipcode</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
     
     
     
