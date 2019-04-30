@@ -2,7 +2,8 @@
 var zipcodeInput = "60616"
 // ----remove static value and uncomment below
 // var zipcodeInput = $("zip-input").val().trim();
-var dateInput = $("date-input").val().trim();
+// var dateInput = $("date-input").val().trim();
+var dateInput = "2019-06-29"
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
 
@@ -24,21 +25,11 @@ $.ajax({
   var weatherAfterThat = response.list[24].weather[0].description
   var weatherEvenAfterThat = response.list[39].weather[0].description
 
-  $(".day-1-forecast").html("<h4>" + "Today: " + "<h4>");
-  $(".day-1-forecast").append(tempToday + "°F");
-  $(".day-1-forecast").append("<br>" + weatherToday);
-  $(".day-2-forecast").html("<h4>" + "Tomorrow: " + "<h4>")
-  $(".day-2-forecast").append(tempTomorrow + "°F");
-  $(".day-2-forecast").append("<br>" + weatherTomorrow);
-  $(".day-3-forecast").html(("<h4>" + moment().day(1).format("dddd")) + "<h4>");
-  $(".day-3-forecast").append(tempAfter + "°F");
-  $(".day-3-forecast").append("<br>" + weatherAfter);
-  $(".day-4-forecast").html(("<h4>" + moment().day(2).format("dddd")) + "<h4>")
-  $(".day-4-forecast").append(tempAfterThat + "°F");
-  $(".day-4-forecast").append("<br>" + weatherAfterThat);
-  $(".day-5-forecast").html(("<h4>" + moment().day(3).format("dddd")) + "<h4>");
-  $(".day-5-forecast").append(tempEvenAfterThat + "°F");
-  $(".day-5-forecast").append("<br>" + weatherEvenAfterThat);
+  $(".day-1-forecast").html("Today: " + tempToday + "°F" + " | " + weatherToday)
+  $(".day-2-forecast").text("Tomorrow: " + tempTomorrow + "°F" + " | " + weatherTomorrow)
+  $(".day-3-forecast").text((moment().day(1).format("dddd")) + ": " + tempAfter + "°F" + " | " + weatherAfter)
+  $(".day-4-forecast").text((moment().day(2).format("dddd")) + ": " + tempAfterThat + "°F" + " | " + weatherAfterThat)
+  $(".day-5-forecast").text((moment().day(3).format("dddd")) + ": " + tempEvenAfterThat + "°F" + " | " + weatherEvenAfterThat)
 });
 
 // ----------------------------------- park
@@ -63,8 +54,8 @@ $.ajax({
       eventDiv.addClass("event");
       var eventName = $("<p>").text("Event: " + response[i].event_description);
       var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
-      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
-      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
+      var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
 
       eventDiv.append(eventName);
       eventDiv.append(parkName);
@@ -78,8 +69,8 @@ $.ajax({
       eventDiv.addClass("event");
       var eventName = $("<p>").text("Event: " + response[i].event_description);
       var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
-      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
-      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
+      var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
 
       eventDiv.append(eventName);
       eventDiv.append(parkName);
@@ -101,11 +92,28 @@ $.ajax({
       console.log(response.restaurants[0].name);
       var i;
       for (i = 0; i < response.restaurants.length; i++) { 
-        $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
-        $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
-        $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
-        $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
-        $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
+        var restaurantDiv = $("<div>");
+        restaurantDiv.addClass("restaurant"); 
+        var restaurantName = $("<p>").text(response.restaurants[i].name);
+        var restaurantAddress = $("<p>").text(response.restaurants[i].address);
+        var restaurantPrice = $("<p>").text(response.restaurants[i].price);
+        var restaurantReserve = $("<p>").text(response.restaurants[i].reserve_url);
+        var restaurantImage = $("<img>");
+        restaurantImage.attr("src", response.restaurants[i].image_url);
+
+
+        restaurantDiv.append(restaurantName);
+        restaurantDiv.append(restaurantAddress);
+        restaurantDiv.append(restaurantPrice);
+        restaurantDiv.append(restaurantReserve);
+        restaurantDiv.append(restaurantImage);
+        $("#restaurant-output").prepend(restaurantDiv);
+
+        // $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
+        // $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
+        // $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
+        // $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
+        // $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
 
         console.log("Name: " + response.restaurants[i].name);
         console.log("Address: " + response.restaurants[i].address);
