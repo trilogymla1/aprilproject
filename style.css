@@ -68,8 +68,13 @@ h1 {
 
 h3,
 p {
+<<<<<<< HEAD
     font-family: 'Times New Roman', serif;
     margin-bottom: 30px;
+=======
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 5px;
+>>>>>>> master
 }
 
 
@@ -117,4 +122,9 @@ button:hover:after,
 button:hover:before {
     -webkit-transform: translate(0);
     transform: translate(0);
+}
+
+/* ------------------event display---------------------- */
+.event {
+	margin-bottom: 20px;
 }

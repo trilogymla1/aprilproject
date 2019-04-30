@@ -1,4 +1,8 @@
 // Weather Ajax Call
+var zipcodeInput = "60616"
+// ----remove static value and uncomment below
+// var zipcodeInput = $("zip-input").val().trim();
+var dateInput = $("date-input").val().trim();
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
 
@@ -28,48 +32,56 @@ $.ajax({
 });
 
 // ----------------------------------- park
-$("#date-time-btn").on("click", function (event) {
-  event.preventDefault();
-  var zipcodeInput = $("zip-input").val().trim();
-  var dateInput = $("date-input").val().trim();
 
+// $("#date-time-btn").on("click", function (event) {
+//   event.preventDefault();
+  
+  
   var URL = "https://data.cityofchicago.org/resource/pk66-w54g.json?reservation_start_date=" + dateInput + "T00:00:00.000";
+    $.ajax({
+      url: URL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(URL);
+      console.log(response);
+      var i;
+      if (response.length > 20) {
+        console.log("many");
+        // copy out new work before pull
+        for (i = 20 -1; i >= 0; i--) {
+      var eventDiv = $("<div>");
+      eventDiv.addClass("event");
+      var eventName = $("<p>").text("Event: " + response[i].event_description);
+      var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
+      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
 
-  $.ajax({
-    url: URL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(URL);
-    console.log(response);
+      eventDiv.append(eventName);
+      eventDiv.append(parkName);
+      eventDiv.append(startDate);
+      eventDiv.append(endDate);
+      $("#event-output").prepend(eventDiv);
+        }
+      } else {
+      for (i = response.length -1; i >= 0; i--) { 
+      var eventDiv = $("<div>");
+      eventDiv.addClass("event");
+      var eventName = $("<p>").text("Event: " + response[i].event_description);
+      var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
+      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
 
-    var i;
-    for (i = 0; i < response.length; i++) {
-      // div names for locations
-      $(".eventName").html("<h1>" + response[i].event_description + "</h1>");
-      $(".locationName").html("<h1>" + response[i].park_facility_name + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_start_date + "</h1>");
-      $(".eventBegin").html("<h1>" + response[i].reservation_end_date + "</h1>");
-      // $(".wind").text("Wind Speed: " + response.wind.speed);
-
-      // Log the data in the console as well
-      console.log("Event: " + response[i].event_description);
-      console.log("Location: " + response[i].park_facility_name);
-      console.log("Begins: " + response[i].reservation_start_date);
-      console.log("Ends: " + response[i].reservation_end_date);
-
+      eventDiv.append(eventName);
+      eventDiv.append(parkName);
+      eventDiv.append(startDate);
+      eventDiv.append(endDate);
+      $("#event-output").prepend(eventDiv);
+    }
     }
   });
 
 
   var restaurantURL = "https://opentable.herokuapp.com/api/restaurants?zip=" + zipcodeInput;
-
-  $.ajax({
-    url: restaurantURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-  })
-});
 
   $.ajax({
       url: restaurantURL,
