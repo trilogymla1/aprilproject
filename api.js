@@ -2,7 +2,8 @@
 var zipcodeInput = "60616"
 // ----remove static value and uncomment below
 // var zipcodeInput = $("zip-input").val().trim();
-var dateInput = $("date-input").val().trim();
+// var dateInput = $("date-input").val().trim();
+var dateInput = "2019-06-29"
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
 
@@ -53,8 +54,8 @@ $.ajax({
       eventDiv.addClass("event");
       var eventName = $("<p>").text("Event: " + response[i].event_description);
       var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
-      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
-      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
+      var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
 
       eventDiv.append(eventName);
       eventDiv.append(parkName);
@@ -68,8 +69,8 @@ $.ajax({
       eventDiv.addClass("event");
       var eventName = $("<p>").text("Event: " + response[i].event_description);
       var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
-      var startDate = $("<p>").text("Location: " + response[i].reservation_start_date);
-      var endDate = $("<p>").text("Location: " + response[i].reservation_end_date);
+      var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
+      var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
 
       eventDiv.append(eventName);
       eventDiv.append(parkName);
