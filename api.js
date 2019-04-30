@@ -92,11 +92,28 @@ $.ajax({
       console.log(response.restaurants[0].name);
       var i;
       for (i = 0; i < response.restaurants.length; i++) { 
-        $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
-        $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
-        $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
-        $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
-        $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
+        var restaurantDiv = $("<div>");
+        restaurantDiv.addClass("restaurant"); 
+        var restaurantName = $("<p>").text(response.restaurants[i].name);
+        var restaurantAddress = $("<p>").text(response.restaurants[i].address);
+        var restaurantPrice = $("<p>").text(response.restaurants[i].price);
+        var restaurantReserve = $("<p>").text(response.restaurants[i].reserve_url);
+        var restaurantImage = $("<img>");
+        restaurantImage.attr("src", response.restaurants[i].image_url);
+
+
+        restaurantDiv.append(restaurantName);
+        restaurantDiv.append(restaurantAddress);
+        restaurantDiv.append(restaurantPrice);
+        restaurantDiv.append(restaurantReserve);
+        restaurantDiv.append(restaurantImage);
+        $("#restaurant-output").prepend(restaurantDiv);
+
+        // $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
+        // $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
+        // $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
+        // $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
+        // $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
 
         console.log("Name: " + response.restaurants[i].name);
         console.log("Address: " + response.restaurants[i].address);
