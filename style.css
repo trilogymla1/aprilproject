@@ -128,3 +128,9 @@ button:hover:before {
     -webkit-transform: translate(0);
     transform: translate(0);
 }
+
+.forecast {
+    height: 150px;
+    max-width: 131px;
+    text-align: center;
+}

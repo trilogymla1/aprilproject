@@ -1,4 +1,7 @@
 // Weather Ajax Call
+var zipcodeInput = "60612"
+var dateInput = "04/27/2019"
+
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
 
@@ -14,17 +17,27 @@ $.ajax({
   var tempAfterThat = Math.floor(response.list[24].main.temp)
   var tempEvenAfterThat = Math.floor(response.list[39].main.temp)
 
-  var weatherToday = response.list[0].weather[0].description
+  var weatherToday = (response.list[0].weather[0].description)
   var weatherTomorrow = response.list[8].weather[0].description
   var weatherAfter = response.list[16].weather[0].description
   var weatherAfterThat = response.list[24].weather[0].description
   var weatherEvenAfterThat = response.list[39].weather[0].description
 
-  $(".day-1-forecast").html("Today: " + tempToday + "°F" + " | " + weatherToday)
-  $(".day-2-forecast").text("Tomorrow: " + tempTomorrow + "°F" + " | " + weatherTomorrow)
-  $(".day-3-forecast").text((moment().day(1).format("dddd")) + ": " + tempAfter + "°F" + " | " + weatherAfter)
-  $(".day-4-forecast").text((moment().day(2).format("dddd")) + ": " + tempAfterThat + "°F" + " | " + weatherAfterThat)
-  $(".day-5-forecast").text((moment().day(3).format("dddd")) + ": " + tempEvenAfterThat + "°F" + " | " + weatherEvenAfterThat)
+  $(".day-1-forecast").html("<h4>" + "Today: " + "<h4>");
+  $(".day-1-forecast").append(tempToday + "°F");
+  $(".day-1-forecast").append("<br>" + weatherToday);
+  $(".day-2-forecast").html("<h4>" + "Tomorrow: " + "<h4>")
+  $(".day-2-forecast").append(tempTomorrow + "°F");
+  $(".day-2-forecast").append("<br>" + weatherTomorrow);
+  $(".day-3-forecast").html(("<h4>" + moment().day(1).format("dddd")) + "<h4>");
+  $(".day-3-forecast").append(tempAfter + "°F");
+  $(".day-3-forecast").append("<br>" + weatherAfter);
+  $(".day-4-forecast").html(("<h4>" + moment().day(2).format("dddd")) + "<h4>")
+  $(".day-4-forecast").append(tempAfterThat + "°F");
+  $(".day-4-forecast").append("<br>" + weatherAfterThat);
+  $(".day-5-forecast").html(("<h4>" + moment().day(3).format("dddd")) + "<h4>");
+  $(".day-5-forecast").append(tempEvenAfterThat + "°F");
+  $(".day-5-forecast").append("<br>" + weatherEvenAfterThat);
 });
 
 // ----------------------------------- park
