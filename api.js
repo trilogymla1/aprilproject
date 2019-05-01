@@ -50,21 +50,26 @@ $("#date-zip-btn").on("click", function (event) {
     console.log(URL);
     console.log(response);
     var i;
-    if (response.length > 20) {
+    if (response.length > 10) {
       console.log("many");
       // copy out new work before pull
-      for (i = 20 - 1; i >= 0; i--) {
+      for (i = 10 - 1; i >= 0; i--) {
         var eventDiv = $("<div>");
         eventDiv.addClass("event");
         var eventName = $("<p>").text("Event: " + response[i].event_description);
         var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
         var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
         var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
+        var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
+          event.preventDefault();
+          alert('I love it.');
+      });
 
         eventDiv.append(eventName);
         eventDiv.append(parkName);
         eventDiv.append(startDate);
         eventDiv.append(endDate);
+        eventDiv.append(eventFavorite);
         $("#event-output").prepend(eventDiv);
       }
     } else {
@@ -75,11 +80,17 @@ $("#date-zip-btn").on("click", function (event) {
         var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
         var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
         var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
+        var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
+          event.preventDefault();
+          alert('I love it.');
+      });
+
 
         eventDiv.append(eventName);
         eventDiv.append(parkName);
         eventDiv.append(startDate);
         eventDiv.append(endDate);
+        eventDiv.append(eventFavorite);
         $("#event-output").prepend(eventDiv);
       }
     }
@@ -102,16 +113,23 @@ $("#date-zip-btn").on("click", function (event) {
       var restaurantAddress = $("<p>").text(response.restaurants[i].address);
       var restaurantPrice = $("<p>").text(response.restaurants[i].price);
       var restaurantReserve = $("<p>").text(response.restaurants[i].reserve_url);
-      var restaurantImage = $("<img>");
-      restaurantImage.attr("src", response.restaurants[i].image_url);
+      var restImgHldr = $("<p>")
+        var restaurantImage = $("<img>");
+        restaurantImage.attr("src", response.restaurants[i].image_url);
+        var restaurantFavorite = $('<button>Save to Favorites</button>').click(function () {
+          event.preventDefault();
+          alert('I love it!');
+      });
 
 
       restaurantDiv.append(restaurantName);
       restaurantDiv.append(restaurantAddress);
       restaurantDiv.append(restaurantPrice);
       restaurantDiv.append(restaurantReserve);
-      restaurantDiv.append(restaurantImage);
-      $("#restaurant-output").prepend(restaurantDiv);
+      restImgHldr.append(restaurantImage);
+        restaurantDiv.append(restImgHldr);
+        restaurantDiv.append(restaurantFavorite);
+        $("#restaurant-output").prepend(restaurantDiv);
 
       // $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
       // $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
