@@ -3,7 +3,7 @@ body {
 }
 
 
-#submit-btn {
+#date-zip-btn {
     background-color: navy;
     color: whitesmoke;
     font-size: 12px;
@@ -69,11 +69,7 @@ h1 {
 h3,
 p {
     font-family: 'Times New Roman', serif;
-<<<<<<< Updated upstream
-    margin-bottom: 5px;
-=======
     margin-bottom: 10px;
->>>>>>> Stashed changes
 }
 
 
@@ -123,6 +119,15 @@ button:hover:before {
     transform: translate(0);
 }
 
+.forecast {
+    height: 130px;
+    max-width: 150px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+}
 /* ------------------event display---------------------- */
 .event {
 	margin-bottom: 20px;
