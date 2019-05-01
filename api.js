@@ -124,9 +124,16 @@ $("#date-zip-btn").on("click", function (event) {
       var restImgHldr = $("<p>")
         var restaurantImage = $("<img>");
         restaurantImage.attr("src", response.restaurants[i].image_url);
-        var restaurantFavorite = $('<button>Save to Favorites</button>').click(function () {
+        var restaurantFavorite = $('<button>Save to Favorites</button>')
+        .addClass("favorite")
+        .attr("data-index", i)
+        .click(function () {
           event.preventDefault();
-          alert('I love it!');
+          console.log($(this).data("index"))
+          var index = $(this).data("index");
+          var selectedResturant = response.restaurants[index];
+          console.log('*******',selectedResturant);
+          
       });
 
 
@@ -145,11 +152,11 @@ $("#date-zip-btn").on("click", function (event) {
       // $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
       // $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
 
-      console.log("Name: " + response.restaurants[i].name);
-      console.log("Address: " + response.restaurants[i].address);
-      console.log("Price on a scale of 1-4: " + response.restaurants[i].price);
-      console.log("Reserve on Open Table: " + response.restaurants[i].reserve_url);
-      console.log(response.restaurants[i].image_url);
+      // console.log("Name: " + response.restaurants[i].name);
+      // console.log("Address: " + response.restaurants[i].address);
+      // console.log("Price on a scale of 1-4: " + response.restaurants[i].price);
+      // console.log("Reserve on Open Table: " + response.restaurants[i].reserve_url);
+      // console.log(response.restaurants[i].image_url);
 
     }
 
