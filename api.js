@@ -1,6 +1,14 @@
 // Weather Ajax Call
 // var zipcodeInput = "60616"
 // ----remove static value and uncomment below
+$(".start-button").on ("click", function (event)
+ { 
+   event.preventDefault();
+  $(".banner-container").hide();
+  $(".container").show();
+});
+
+
 $("#date-zip-btn").on("click", function (event) {
   event.preventDefault();
   console.log(zipcodeInput);
