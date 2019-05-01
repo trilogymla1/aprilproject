@@ -208,6 +208,10 @@ html,body{
   text-align:justify
 }
 
+.event
+.restaurant {
+	margin-bottom: 20px;
+}
 
 /* header {
     text-align: center;
@@ -300,6 +304,3 @@ h4 {
     font-size: 20px;
 } */
 /* ------------------event display---------------------- */
-.event {
-	margin-bottom: 20px;
-}
