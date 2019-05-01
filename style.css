@@ -22,6 +22,15 @@ body {
 .col-md-12.card-container {
     display: inline-block;
     width: 49%;
+    height: 100%;
+}
+
+.row1 {
+    height: 311px;
+}
+
+.card.toprow {
+    min-height: 311px;
 }
 
 .container {
