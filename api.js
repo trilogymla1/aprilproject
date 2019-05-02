@@ -1,13 +1,61 @@
-// Weather Ajax Call
-// var zipcodeInput = "60616"
-// ----remove static value and uncomment below
+$( document ).ready(function() {
+  $(".not-future-date").hide()
+  $(".not-valid-date").hide();
+  $(".not-valid-zip").hide();
+  $(".not-valid-format").hide();
+
 $("#date-zip-btn").on("click", function (event) {
   event.preventDefault();
-  console.log(zipcodeInput);
-  console.log(dateInput);
 
   var zipcodeInput = $("#zip-input").val().trim();
   var dateInput = $("#date-input").val().trim();
+  console.log(zipcodeInput);
+  console.log(dateInput);
+
+// error handling
+  function isFutureDate() {
+    var target = moment(dateInput, "YYYY-MM-DD");
+    if (target.diff(moment(), 'days') < 0) {
+       $(".not-future-date").show();
+    } else {
+      $(".not-future-date").hide();
+      ajaxCalls();
+    }
+  }
+
+  function isValidDate() {
+    if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
+      $(".not-valid-format").show();
+    } else {
+      $(".not-valid-format").hide();
+      ajaxCalls();
+    }
+    var getYear = dateInput.split("-");
+    var year = parseInt(getYear[0], 10);
+    console.log(year);
+    if (year > 2050) {
+      $(".not-valid-date").show()
+    } else {
+      $(".not-valid-date").hide()
+      ajaxCalls()
+    }
+  }
+  isValidDate();
+  
+
+
+  isFutureDate();
+  function isValidZipCode() {
+      if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
+        $(".not-valid-zip").show();
+      } else {
+        $(".not-valid-zip").hide();
+        ajaxCalls();
+      }
+  }
+  isValidZipCode();
+
+function ajaxCalls() {
   // var dateInput = "2019-06-29"
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
@@ -92,8 +140,8 @@ $("#date-zip-btn").on("click", function (event) {
     url: restaurantURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
-    console.log(response.restaurants[0].name);
+    // console.log(response);
+    // console.log(response.restaurants[0].name);
     var i;
     for (i = 0; i < response.restaurants.length; i++) {
       var restaurantDiv = $("<div>");
@@ -129,4 +177,6 @@ $("#date-zip-btn").on("click", function (event) {
 
 
   });
+}
+});
 });
