@@ -86,8 +86,15 @@ button:hover {
   transform: translate(0);
 }
 
+.favorite-event, .favorite-rest {
+  background-color: rgb(245, 185, 195);
+  padding: 5px;
+  border-radius: 10px;
+}
 
-
+.forecast {
+  line-height: 2.5em;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600ihttps://images6.alphacoders.com/423/423653.jpg');
 html,body{
@@ -216,97 +223,3 @@ margin-bottom: 20px;
 margin-bottom: 20px;
 }
 
-<<<<<<< Updated upstream
-/* header {
-  text-align: center;
-  opacity: 0.8;
-  width: 100%;
-  height: auto;
-  background-size: cover;
-  background-attachment: fixed;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0 0 85% 85% / 30%;
-}
-
-header .overlay {
-  width: 100%;
-  height: 50%;
-  padding: 30px;
-  color: #FFF;
-  text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient(135deg, navy 10%, lightblue 100%);
-
-}
-
-h1 {
-  font-family: 'Times New Roman', serif;
-  font-size: 50px;
-  margin-bottom: 10px;
-}
-
-h3,
-p {
-  font-family: 'Times New Roman', serif;
-  margin-bottom: 10px;
-}
-
-
-button:hover {
-  cursor: pointer;
-}
-
-.button {
-  padding: 5px 15px;
-  background: none;
-  border: none;
-  position: relative;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 2px;
-  cursor: pointer;
-  color: whitesmoke;
-}
-
-button:after,
-button:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border: 2px solid whitesmoke;
-  transition: -webkit-transform 0.2s;
-  transition: transform 0.2s;
-  transition: transform 0.2s, -webkit-transform 0.2s;
-}
-
-button:after {
-  -webkit-transform: translate(3px, 3px);
-  transform: translate(3px, 3px);
-}
-
-button:before {
-  -webkit-transform: translate(-3px, -3px);
-  transform: translate(-3px, -3px);
-}
-
-button:hover:after,
-button:hover:before {
-  -webkit-transform: translate(0);
-  transform: translate(0);
-}
-
-.forecast {
-  height: 130px;
-  max-width: 150px;
-  text-align: center;
-}
-
-h4 {
-  font-size: 20px;
-} */
-/* ------------------event display---------------------- */
-=======
->>>>>>> Stashed changes
