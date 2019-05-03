@@ -239,7 +239,7 @@ function restaurantAjax(zipcodeInput) {
       var restaurantDiv = $("<div>");
       restaurantDiv.addClass("restaurant");
       var restaurantName = $("<p>").text(response.restaurants[i].name);
-      var restaurantReserve = $("<a>").attr("href", response.restaurants[i].reserve_url).text(response.restaurants[i].name);
+      var restaurantReserve = $("<a>").attr("href", response.restaurants[i].reserve_url).attr("target", "_blank").text(response.restaurants[i].name);
       var restaurantAddress = $("<p>").text(response.restaurants[i].address);
       var restaurantPrice = $("<p>").text(response.restaurants[i].price);
      
@@ -267,7 +267,7 @@ function restaurantAjax(zipcodeInput) {
           console.log(selectedRestaurant.name);
           
           // -------send restaraunt fave to faves div
-          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).text("Make Reservations")
+          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).attr("target", "_blank").text("Make Reservations")
           var newRow = $("<tr>").append(
             $("<td>").text(selectedRestaurant.name),
             $("<td>").text(selectedRestaurant.address),
