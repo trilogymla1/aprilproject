@@ -3,7 +3,7 @@ $( document ).ready(function() {
   $(".not-valid-date").hide();
   $(".not-valid-zip").hide();
   $(".not-valid-format").hide();
-  
+
 // Weather Ajax Call
 // var zipcodeInput = "60616"
 // ----remove static value and uncomment below
@@ -14,6 +14,35 @@ $(".start-button").on ("click", function (event)
   $(".container").show();
 });
 
+// error handling
+function isValidDate(dateInput) {
+  var target = moment(dateInput, "YYYY-MM-DD");
+  if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
+    $(".not-future-date").show();
+    return false;
+  } else if (target.diff(moment(), 'days') < 0) {
+    $(".not-future-date").show();
+    return false;
+ } else if(target.diff(moment(), 'years') > 25){
+    $(".not-valid-date").show()
+    return false;
+  } else {
+    $(".not-valid-date").hide()
+    $(".not-future-date").hide();
+    $(".not-valid-format").hide();
+    return true
+  }
+};
+
+function isValidZipCode(zipcodeInput) {
+  if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
+    $(".not-valid-zip").show();
+    return false
+  } else {
+    $(".not-valid-zip").hide();
+    return true
+  } 
+}
 
 $("#date-zip-btn").on("click", function (event) {
   event.preventDefault();
@@ -22,51 +51,65 @@ $("#date-zip-btn").on("click", function (event) {
   var dateInput = $("#date-input").val().trim();
   console.log(zipcodeInput);
   console.log(dateInput);
+ 
+  if (isValidDate(dateInput) && isValidZipCode(zipcodeInput)) {
+    $("#event-output").empty();
+    $("#restaurant-output").empty();
+    ajaxCalls(dateInput, zipcodeInput);
+    }
+  });
 
+function ajaxCalls(dateInput, zipcodeInput) {
+  weatherAjax(zipcodeInput);
+  eventAjax(dateInput);
+  restaurantAjax(zipcodeInput);
+}   
 // error handling
-  function isFutureDate() {
-    var target = moment(dateInput, "YYYY-MM-DD");
-    if (target.diff(moment(), 'days') < 0) {
-       $(".not-future-date").show();
-    } else {
-      $(".not-future-date").hide();
-      ajaxCalls();
-    }
-  }
 
-  function isValidDate() {
-    if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
-      $(".not-valid-format").show();
-    } else {
-      $(".not-valid-format").hide();
-      ajaxCalls();
-    }
-    var getYear = dateInput.split("-");
-    var year = parseInt(getYear[0], 10);
-    console.log(year);
-    if (year > 2050) {
-      $(".not-valid-date").show()
-    } else {
-      $(".not-valid-date").hide()
-      ajaxCalls()
-    }
-  }
-  isValidDate();
+
+  // function isFutureDate() {
+  //   var target = moment(dateInput, "YYYY-MM-DD");
+  //   if (target.diff(moment(), 'days') < 0) {
+  //      $(".not-future-date").show();
+  //   } else {
+  //     $(".not-future-date").hide();
+  //     ajaxCalls();
+  //   }
+  // }
+
+  // function isValidDate() {
+  //   if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
+  //     $(".not-valid-format").show();
+  //   } else {
+  //     $(".not-valid-format").hide();
+  //     ajaxCalls();
+  //   }
+  //   var getYear = dateInput.split("-");
+  //   var year = parseInt(getYear[0], 10);
+  //   console.log(year);
+  //   if (year > 2050) {
+  //     $(".not-valid-date").show()
+  //   } else {
+  //     $(".not-valid-date").hide()
+  //     ajaxCalls()
+  //   }
+  // }
+  // isValidDate();
   
 
 
-  isFutureDate();
-  function isValidZipCode() {
-      if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
-        $(".not-valid-zip").show();
-      } else {
-        $(".not-valid-zip").hide();
-        ajaxCalls();
-      }
-  }
-  isValidZipCode();
+  // isFutureDate();
+  // function isValidZipCode() {
+  //     if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
+  //       $(".not-valid-zip").show();
+  //     } else {
+  //       $(".not-valid-zip").hide();
+  //       ajaxCalls();
+  //     }
+  // }
+  // isValidZipCode();
 
-function ajaxCalls() {
+function weatherAjax(zipcodeInput) {
   // var dateInput = "2019-06-29"
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
@@ -96,11 +139,11 @@ function ajaxCalls() {
     $(".day-4-forecast").text((moment().add(3, 'days').format("dddd")) + ": " + tempAfterThat + "°F" + " | " + weatherAfterThat)
     $(".day-5-forecast").text((moment().add(4, 'days').format("dddd")) + ": " + tempEvenAfterThat + "°F" + " | " + weatherEvenAfterThat)
   });
-
+}
   // ----------------------------------- park
 
 
-
+function eventAjax(dateInput) {
   var URL = "https://data.cityofchicago.org/resource/pk66-w54g.json?reservation_start_date=" + dateInput + "T00:00:00.000";
   $.ajax({
     url: URL,
@@ -180,8 +223,9 @@ function ajaxCalls() {
       }
     }
   });
+}  
 
-
+function restaurantAjax(zipcodeInput) {
   var restaurantURL = "https://opentable.herokuapp.com/api/restaurants?zip=" + zipcodeInput;
 
   $.ajax({
@@ -251,4 +295,4 @@ function ajaxCalls() {
   });
 }
 });
-});
+
