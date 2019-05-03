@@ -183,9 +183,7 @@ $(document).ready(function () {
                 $("<td>").text(selectedEvent.park_facility_name),
                 $("<td>").text(selectedEvent.reservation_start_date),
                 $("<td>").text(selectedEvent.reservation_end_date),
-                // $("<td>").text(selectedRestaurant.price),
-                // $("<td>").text(selectedRestaurant.reserve_url),
-                // $("<td>").text(selectedRestaurant.phone),
+
               );
               $("#fave-event-table > tbody").append(newRow);
 
@@ -204,15 +202,36 @@ $(document).ready(function () {
           var eventDiv = $("<div>");
           eventDiv.addClass("event");
           var eventName = $("<p>").text("Event: " + response[i].event_description);
-          eventName.addClass("event-title");
           var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
           var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
           var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
-          var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
-            event.preventDefault();
-            // console.log('I love it.');
-          });
+          var eventFavorite = $('<button>Save to Favorites</button>')
+            .addClass("favorite-event")
+            .attr("data-index", i)
+            .click(function () {
+              event.preventDefault();
+              console.log($(this).data("index"))
+              var index = $(this).data("index");
+              var selectedEvent = response[index];
+              console.log('*******', selectedEvent);
+              // console.log(JSON.stringify(selectedRestaurant));
+              // var stringRest = JSON.stringify(selectedRestaurant);
+              // objRest = JSON.parse(stringRest);
+              // console.log(objRest);
+              console.log(selectedEvent.event_description);
 
+              // -------send event fave to faves div
+              var newRow = $("<tr>").append(
+                $("<td>").text(selectedEvent.event_description),
+                $("<td>").text(selectedEvent.park_facility_name),
+                $("<td>").text(selectedEvent.reservation_start_date),
+                $("<td>").text(selectedEvent.reservation_end_date),
+
+              );
+              $("#fave-event-table > tbody").append(newRow);
+
+
+            });
 
           eventDiv.append(eventName);
           eventDiv.append(parkName);
@@ -220,6 +239,7 @@ $(document).ready(function () {
           eventDiv.append(endDate);
           eventDiv.append(eventFavorite);
           $("#event-output").prepend(eventDiv);
+
         }
       }
     });
@@ -252,47 +272,47 @@ $(document).ready(function () {
         // var restaurantPhone = $("<p>").text(response.restaurants[i].phone);
         // -----------------------------------------------------------restaraunt fave button EVENT
         var restaurantFavorite = $('<button>Save to Favorites</button>')
-        .addClass("favorite-rest")
-        .attr("data-index", i)
-        .click(function () {
-          event.preventDefault();
-          console.log($(this).data("index"))
-          var index = $(this).data("index");
-          var selectedRestaurant = response.restaurants[index];
-          console.log('*******',selectedRestaurant);
-          // console.log(JSON.stringify(selectedRestaurant));
-          // var stringRest = JSON.stringify(selectedRestaurant);
-          // objRest = JSON.parse(stringRest);
-          // console.log(objRest);
-          console.log(selectedRestaurant.name);
-          
-          // -------send restaraunt fave to faves div
-          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).attr("target", "_blank").text("Make Reservations")
-          var newRow = $("<tr>").append(
-            $("<td>").text(selectedRestaurant.name),
-            $("<td>").text(selectedRestaurant.address),
-            $("<td>").text(selectedRestaurant.city),
-            $("<td>").text(selectedRestaurant.postal_code),
-            $("<td>").text(selectedRestaurant.price),
-            $("<td>").append(restURL),
-            $("<td>").text(selectedRestaurant.phone),
-          );
-        $("#fave-rest-table > tbody").append(newRow);
-          
-      });
+          .addClass("favorite-rest")
+          .attr("data-index", i)
+          .click(function () {
+            event.preventDefault();
+            console.log($(this).data("index"))
+            var index = $(this).data("index");
+            var selectedRestaurant = response.restaurants[index];
+            console.log('*******', selectedRestaurant);
+            // console.log(JSON.stringify(selectedRestaurant));
+            // var stringRest = JSON.stringify(selectedRestaurant);
+            // objRest = JSON.parse(stringRest);
+            // console.log(objRest);
+            console.log(selectedRestaurant.name);
 
-      // restaurantDiv.append(restaurantName);
-      restaurantDiv.append(restaurantReserve);
-      restaurantDiv.append(restaurantAddress);
-      restaurantDiv.append(restaurantPrice);
-      restImgHldr.append(restaurantImage);
+            // -------send restaraunt fave to faves div
+            var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).attr("target", "_blank").text("Make Reservations")
+            var newRow = $("<tr>").append(
+              $("<td>").text(selectedRestaurant.name),
+              $("<td>").text(selectedRestaurant.address),
+              $("<td>").text(selectedRestaurant.city),
+              $("<td>").text(selectedRestaurant.postal_code),
+              $("<td>").text(selectedRestaurant.price),
+              $("<td>").append(restURL),
+              $("<td>").text(selectedRestaurant.phone),
+            );
+            $("#fave-rest-table > tbody").append(newRow);
+
+          });
+
+        // restaurantDiv.append(restaurantName);
+        restaurantDiv.append(restaurantReserve);
+        restaurantDiv.append(restaurantAddress);
+        restaurantDiv.append(restaurantPrice);
+        restImgHldr.append(restaurantImage);
         restaurantDiv.append(restImgHldr);
         restaurantDiv.append(restaurantFavorite);
         $("#restaurant-output").prepend(restaurantDiv);
-    }
+      }
 
 
-  });
-}
+    });
+  }
 });
 
