@@ -157,10 +157,11 @@ $(document).ready(function () {
         for (i = 10 - 1; i >= 0; i--) {
           var eventDiv = $("<div>");
           eventDiv.addClass("event");
-          var eventName = $("<p>").text("Event: " + response[i].event_description);
+          var eventName = $("<p>").html("<b>"+ "Event: " + response[i].event_description + "</b>");
           var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
-          var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
-          var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
+          var startDate = $("<p>").text("Start: " + response[i].reservation_start_date.substring(0, 10));
+          var endDate = $("<p>").text("End: " + response[i].reservation_end_date.substring(0, 10));
+
           // --------------------button
           var eventFavorite = $('<button>Save to Favorites</button>')
             .addClass("favorite-event")
@@ -178,15 +179,17 @@ $(document).ready(function () {
               console.log(selectedEvent.event_description);
 
               // -------send event fave to faves div
+              function favDiv() {
               var newRow = $("<tr>").append(
                 $("<td>").text(selectedEvent.event_description),
                 $("<td>").text(selectedEvent.park_facility_name),
-                $("<td>").text(selectedEvent.reservation_start_date),
-                $("<td>").text(selectedEvent.reservation_end_date),
+                $("<td>").text(selectedEvent.reservation_start_date.substring(0, 10)),
+                $("<td>").text(selectedEvent.reservation_end_date.substring(0, 10)),
 
               );
               $("#fave-event-table > tbody").append(newRow);
-
+            }
+            favDiv();
 
             });
 
@@ -201,7 +204,7 @@ $(document).ready(function () {
         for (i = response.length - 1; i >= 0; i--) {
           var eventDiv = $("<div>");
           eventDiv.addClass("event");
-          var eventName = $("<p>").text("Event: " + response[i].event_description);
+          var eventName = $("<p>").html("<b>" + "Event: " + response[i].event_description + "</b>");
           var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
           var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
           var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
@@ -221,16 +224,7 @@ $(document).ready(function () {
               console.log(selectedEvent.event_description);
 
               // -------send event fave to faves div
-              var newRow = $("<tr>").append(
-                $("<td>").text(selectedEvent.event_description),
-                $("<td>").text(selectedEvent.park_facility_name),
-                $("<td>").text(selectedEvent.reservation_start_date),
-                $("<td>").text(selectedEvent.reservation_end_date),
-
-              );
-              $("#fave-event-table > tbody").append(newRow);
-
-
+              favDiv();
             });
 
           eventDiv.append(eventName);
