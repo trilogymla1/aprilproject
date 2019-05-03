@@ -86,8 +86,15 @@ button:hover {
   transform: translate(0);
 }
 
+.favorite-event, .favorite-rest {
+  background-color: rgb(245, 185, 195);
+  padding: 5px;
+  border-radius: 10px;
+}
 
-
+.forecast {
+  line-height: 2.5em;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600ihttps://images6.alphacoders.com/423/423653.jpg');
 html,body{
