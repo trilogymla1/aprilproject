@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Restaurant Finder</title>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Restaurant Finder</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,20 +17,21 @@
   <!-- Moment.js Reference -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 </head>
+
 <body>
   <div class="banner-container">
     <div class="header">
-        <div class="sides">
-        </div>
-        <div class="info">
+      <div class="sides">
+      </div>
+      <div class="info">
         <h4><a href="#category">ALM DESIGN</a></h4>
-          <h1>Event Planner</h1>
-          <button class="start-button">Start Search</button>
-        </div>
+        <h1>Event Planner</h1>
+        <button class="start-button">Start Search</button>
       </div>
     </div>
+  </div>
 
-    <!-- <header>
+  <!-- <header>
         <div class="overlay">
       <h1>Event Planner</h1>
       <p>Find local events in the Chicago area based on the weather</p>
@@ -37,160 +39,165 @@
           </div>
       </header> -->
 
-    <div class="container">
+  <div class="container">
 
-        <!-- <div class="jumbotron" style="background-color: navy; color: whitesmoke">
+    <!-- <div class="jumbotron" style="background-color: navy; color: whitesmoke">
           <h1 class="text-center">Event Finder</h1>
           <h3 class="text-center">April Project 1</h3>
         </div> -->
-        <br>
-        
-        
-        <div class="row1">
-          <div class="col-md-12 card-container">
-            <!-- Add Employee  -->
-            <div class="card toprow">
-              <div class="card-header">Event Search Parameters</div>
-              <div class="card-body">
-    
-                <form>
-                  <div class="form-group">
-                    <label for="date-input">Date</label>
-                    <input class="form-control" id="date-input" placeholder="2019-04-30" type="text">
-                    <div class="not-future-date">Please use future date</div>
-                    <div class="not-valid-format">Please use valid date in correct format</div>
-                    <div class="not-valid-date">Events not available this far in the future</div>
-                  </div>
-                  <div class="form-group">
-                    <label for="zip-input">Zipcode</label>
-                    <input class="form-control" id="zip-input" placeholder="60618" type="number">
-                    <div class="not-valid-zip">Please enter a valid zip code from Chicago</div>
-                    <br>
-                  <button class="btn btn-primary float-right button" id="date-zip-btn">Submit</button>
+    <br>
 
-                  
-                </form>
-    
+
+    <div class="row1">
+      <div class="col-md-12 card-container">
+        <!-- Add Employee  -->
+        <div class="card toprow">
+          <div class="card-header">Event Search Parameters</div>
+          <div class="card-body">
+
+            <form>
+              <div class="form-group">
+                <label for="date-input">Date</label>
+                <input class="form-control" id="date-input" placeholder="2019-04-30" type="text">
+                <div class="not-future-date">Please use future date</div>
+                <div class="not-valid-format">Please use valid date in correct format</div>
+                <div class="not-valid-date">Events not available this far in the future</div>
               </div>
-            </div>
-          </div>
-        </div>
+              <div class="form-group">
+                <label for="zip-input">Zipcode</label>
+                <input class="form-control" id="zip-input" placeholder="60618" type="number">
+                <div class="not-valid-zip">Please enter a valid zip code from Chicago</div>
+                <br>
+                <button class="btn btn-primary float-right button" id="date-zip-btn">Submit</button>
 
-         <div class="col-sm-12 card-container">
-              <div class="card toprow">
-                  <div class="card-header">
-                      <h4>5 Day Forecast</h4>
-                  </div>
-                <div class="card-body">
-                    
-                  <div class="day-1-forecast"></div>
-                  <div class="day-2-forecast"></div>
-                  <div class="day-3-forecast"></div>
-                  <div class="day-4-forecast"></div>
-                  <div class="day-5-forecast"></div>
-                  
-              </div>
-            </div>
-          </div>
-      </div>
 
-      <br>
+            </form>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Events Results</h5>
-              <div id="event-output"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Restaurant Results</h5>
-              <div id="restaurant-output"></div>
-            </div>
           </div>
         </div>
       </div>
-      
-     <br>
-      <div class="row">
-          <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header">Here's your fave restaurants</div>
-              <div class="card-body">
-                <table class="table table-sm table-hover" id='fave-rest-table'>
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Address</th>
-                      <th scope="col">City</th>
-                      <th scope="col">Zip</th>
-                      <th scope="col">Price (out of 4)</th>
-                      <th scope="col">Url</th>
-                      <th scope="col">Phone</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div>
 
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-              <div class="card mb-4">
-                <div class="card-header">Here's your fave events</div>
-                <div class="card-body">
-                  <table class="table table-sm table-hover" id='fave-event-table'>
-                    <thead>
-                      <tr>
-                        <th scope="col">Event</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <!-- <th scope="col">Price (out of 4)</th>
+    <div class="col-sm-12 card-container">
+      <div class="card toprow">
+        <div class="card-header">
+          <h4>5 Day Forecast</h4>
+        </div>
+        <div class="card-body">
+
+          <div class="day-1-forecast"></div>
+          <div class="day-2-forecast"></div>
+          <div class="day-3-forecast"></div>
+          <div class="day-4-forecast"></div>
+          <div class="day-5-forecast"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-header">
+            <h5 class="card-title">Events Results</h5>
+          </div>
+          <div id="event-output"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-header">
+            <h5 class="card-title">Restaurant Results</h5>
+          </div>
+          <div id="restaurant-output"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">Here's your fave restaurants</div>
+        <div class="card-body">
+          <table class="table table-sm table-hover" id='fave-rest-table'>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">Zip</th>
+                <th scope="col">Price (out of 4)</th>
+                <th scope="col">Url</th>
+                <th scope="col">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">Here's your fave events</div>
+        <div class="card-body">
+          <table class="table table-sm table-hover" id='fave-event-table'>
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+                <th scope="col">Location</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <!-- <th scope="col">Price (out of 4)</th>
                         <th scope="col">Url</th>
                         <th scope="col">Phone</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-       <!-- JavaScript -->
-       <script src="api.js"></script>
-       <script src="app.js"></script>   
+              </tr>
+            </thead>
+            <tbody>
 
-       <br>
-       
-      <style>
-          .footer {
-            position: fixed;
-            opacity:0.8;
-            height:1.5em;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color:navy;
-            color: whitesmoke;
-            text-align: center;
-            font-size: 12px;
-          }
-          </style>
-          
-          <div class="footer">
-            <p>Copyright: ALM</p>
-          </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+
+  <br>
+
+  <style>
+    .footer {
+      position: fixed;
+      opacity: 0.8;
+      height: 1.5em;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: navy;
+      color: whitesmoke;
+      text-align: center;
+      font-size: 12px;
+    }
+  </style>
+
+  <div class="footer">
+    <p>Copyright: ALM</p>
+  </div>
 </body>
+
 </html>
