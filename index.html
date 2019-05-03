@@ -57,10 +57,14 @@
                   <div class="form-group">
                     <label for="date-input">Date</label>
                     <input class="form-control" id="date-input" placeholder="2019-04-30" type="text">
+                    <div class="not-future-date">Please use future date</div>
+                    <div class="not-valid-format">Please use valid date in correct format</div>
+                    <div class="not-valid-date">Events not available this far in the future</div>
                   </div>
                   <div class="form-group">
                     <label for="zip-input">Zipcode</label>
                     <input class="form-control" id="zip-input" placeholder="60618" type="number">
+                    <div class="not-valid-zip">Please enter a valid zip code from Chicago</div>
                     <br>
                   <button class="btn btn-primary float-right button" id="date-zip-btn">Submit</button>
 
@@ -111,15 +115,59 @@
         </div>
       </div>
       
-      <br>
-      <div class="card">
-        <div class="card-header">
-          Favorites
+     <br>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4">
+              <div class="card-header">Here's your fave restaurants</div>
+              <div class="card-body">
+                <table class="table table-sm table-hover" id='fave-rest-table'>
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">City</th>
+                      <th scope="col">Zip</th>
+                      <th scope="col">Price (out of 4)</th>
+                      <th scope="col">Url</th>
+                      <th scope="col">Phone</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
 
-        </div>
-      </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-4">
+                <div class="card-header">Here's your fave events</div>
+                <div class="card-body">
+                  <table class="table table-sm table-hover" id='fave-event-table'>
+                    <thead>
+                      <tr>
+                        <th scope="col">Event</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <!-- <th scope="col">Price (out of 4)</th>
+                        <th scope="col">Url</th>
+                        <th scope="col">Phone</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
        <!-- JavaScript -->
        <script src="api.js"></script>
        <script src="app.js"></script>   

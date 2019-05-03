@@ -1,3 +1,9 @@
+$( document ).ready(function() {
+  $(".not-future-date").hide()
+  $(".not-valid-date").hide();
+  $(".not-valid-zip").hide();
+  $(".not-valid-format").hide();
+  
 // Weather Ajax Call
 // var zipcodeInput = "60616"
 // ----remove static value and uncomment below
@@ -11,11 +17,56 @@ $(".start-button").on ("click", function (event)
 
 $("#date-zip-btn").on("click", function (event) {
   event.preventDefault();
-  console.log(zipcodeInput);
-  console.log(dateInput);
 
   var zipcodeInput = $("#zip-input").val().trim();
   var dateInput = $("#date-input").val().trim();
+  console.log(zipcodeInput);
+  console.log(dateInput);
+
+// error handling
+  function isFutureDate() {
+    var target = moment(dateInput, "YYYY-MM-DD");
+    if (target.diff(moment(), 'days') < 0) {
+       $(".not-future-date").show();
+    } else {
+      $(".not-future-date").hide();
+      ajaxCalls();
+    }
+  }
+
+  function isValidDate() {
+    if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
+      $(".not-valid-format").show();
+    } else {
+      $(".not-valid-format").hide();
+      ajaxCalls();
+    }
+    var getYear = dateInput.split("-");
+    var year = parseInt(getYear[0], 10);
+    console.log(year);
+    if (year > 2050) {
+      $(".not-valid-date").show()
+    } else {
+      $(".not-valid-date").hide()
+      ajaxCalls()
+    }
+  }
+  isValidDate();
+  
+
+
+  isFutureDate();
+  function isValidZipCode() {
+      if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
+        $(".not-valid-zip").show();
+      } else {
+        $(".not-valid-zip").hide();
+        ajaxCalls();
+      }
+  }
+  isValidZipCode();
+
+function ajaxCalls() {
   // var dateInput = "2019-06-29"
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
 
@@ -68,9 +119,35 @@ $("#date-zip-btn").on("click", function (event) {
         var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
         var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
         var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
-        var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
+        // --------------------button
+        var eventFavorite = $('<button>Save to Favorites</button>')
+        .addClass("favorite-event")
+        .attr("data-index", i)
+        .click(function () {
           event.preventDefault();
-          alert('I love it.');
+          console.log($(this).data("index"))
+          var index = $(this).data("index");
+          var selectedEvent = response[index];
+          console.log('*******',selectedEvent);
+          // console.log(JSON.stringify(selectedRestaurant));
+          // var stringRest = JSON.stringify(selectedRestaurant);
+          // objRest = JSON.parse(stringRest);
+          // console.log(objRest);
+          console.log(selectedEvent.event_description);
+          
+          // -------send event fave to faves div
+          var newRow = $("<tr>").append(
+            $("<td>").text(selectedEvent.event_description),
+            $("<td>").text(selectedEvent.park_facility_name),
+            $("<td>").text(selectedEvent.reservation_start_date),
+            $("<td>").text(selectedEvent.reservation_end_date),
+            // $("<td>").text(selectedRestaurant.price),
+            // $("<td>").text(selectedRestaurant.reserve_url),
+            // $("<td>").text(selectedRestaurant.phone),
+          );
+        $("#fave-event-table > tbody").append(newRow);
+        
+
       });
 
         eventDiv.append(eventName);
@@ -90,7 +167,7 @@ $("#date-zip-btn").on("click", function (event) {
         var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
         var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
           event.preventDefault();
-          alert('I love it.');
+          // console.log('I love it.');
       });
 
 
@@ -111,8 +188,8 @@ $("#date-zip-btn").on("click", function (event) {
     url: restaurantURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
-    console.log(response.restaurants[0].name);
+    // console.log(response);
+    // console.log(response.restaurants[0].name);
     var i;
     for (i = 0; i < response.restaurants.length; i++) {
       var restaurantDiv = $("<div>");
@@ -124,18 +201,39 @@ $("#date-zip-btn").on("click", function (event) {
       var restImgHldr = $("<p>")
         var restaurantImage = $("<img>");
         restaurantImage.attr("src", response.restaurants[i].image_url);
+        // ---------
+      // var restaurantCity = $("<p>").text(response.restaurants[i].city); 
+      // var restaurantZip = $("<p>").text(response.restaurants[i].postal_code);
+      // var restaurantPhone = $("<p>").text(response.restaurants[i].phone);
+        // -----------------------------------------------------------restaraunt fave button EVENT
         var restaurantFavorite = $('<button>Save to Favorites</button>')
-        .addClass("favorite")
+        .addClass("favorite-rest")
         .attr("data-index", i)
         .click(function () {
           event.preventDefault();
           console.log($(this).data("index"))
           var index = $(this).data("index");
-          var selectedResturant = response.restaurants[index];
-          console.log('*******',selectedResturant);
+          var selectedRestaurant = response.restaurants[index];
+          console.log('*******',selectedRestaurant);
+          // console.log(JSON.stringify(selectedRestaurant));
+          // var stringRest = JSON.stringify(selectedRestaurant);
+          // objRest = JSON.parse(stringRest);
+          // console.log(objRest);
+          console.log(selectedRestaurant.name);
+          
+          // -------send restaraunt fave to faves div
+          var newRow = $("<tr>").append(
+            $("<td>").text(selectedRestaurant.name),
+            $("<td>").text(selectedRestaurant.address),
+            $("<td>").text(selectedRestaurant.city),
+            $("<td>").text(selectedRestaurant.postal_code),
+            $("<td>").text(selectedRestaurant.price),
+            $("<td>").text(selectedRestaurant.reserve_url),
+            $("<td>").text(selectedRestaurant.phone),
+          );
+        $("#fave-rest-table > tbody").append(newRow);
           
       });
-
 
       restaurantDiv.append(restaurantName);
       restaurantDiv.append(restaurantAddress);
@@ -145,21 +243,10 @@ $("#date-zip-btn").on("click", function (event) {
         restaurantDiv.append(restImgHldr);
         restaurantDiv.append(restaurantFavorite);
         $("#restaurant-output").prepend(restaurantDiv);
-
-      // $(".restaurantName").html("<h1>" + response.restaurants[i].name + "</h1>");
-      // $(".restaurantAddress").html("<h1>" + response.restaurants[i].address + "</h1>");
-      // $(".restaurantPrice").html("<h1>" + response.restaurants[i].price + "</h1>");
-      // $(".restaurantReserve").html("<h1>" + response.restaurants[i].reserve_url + "</h1>");
-      // $(".restaurantImage").html("<h1>" + response.restaurants[i].image_url + "</h1>");
-
-      // console.log("Name: " + response.restaurants[i].name);
-      // console.log("Address: " + response.restaurants[i].address);
-      // console.log("Price on a scale of 1-4: " + response.restaurants[i].price);
-      // console.log("Reserve on Open Table: " + response.restaurants[i].reserve_url);
-      // console.log(response.restaurants[i].image_url);
-
     }
 
 
   });
+}
+});
 });
