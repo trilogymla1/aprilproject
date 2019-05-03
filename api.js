@@ -239,9 +239,10 @@ function restaurantAjax(zipcodeInput) {
       var restaurantDiv = $("<div>");
       restaurantDiv.addClass("restaurant");
       var restaurantName = $("<p>").text(response.restaurants[i].name);
+      var restaurantReserve = $("<a>").attr("href", response.restaurants[i].reserve_url).text(response.restaurants[i].name);
       var restaurantAddress = $("<p>").text(response.restaurants[i].address);
       var restaurantPrice = $("<p>").text(response.restaurants[i].price);
-      var restaurantReserve = $("<p>").text(response.restaurants[i].reserve_url);
+     
       var restImgHldr = $("<p>")
         var restaurantImage = $("<img>");
         restaurantImage.attr("src", response.restaurants[i].image_url);
@@ -266,23 +267,24 @@ function restaurantAjax(zipcodeInput) {
           console.log(selectedRestaurant.name);
           
           // -------send restaraunt fave to faves div
+          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).text("Make Reservations")
           var newRow = $("<tr>").append(
             $("<td>").text(selectedRestaurant.name),
             $("<td>").text(selectedRestaurant.address),
             $("<td>").text(selectedRestaurant.city),
             $("<td>").text(selectedRestaurant.postal_code),
             $("<td>").text(selectedRestaurant.price),
-            $("<td>").text(selectedRestaurant.reserve_url),
+            $("<td>").append(restURL),
             $("<td>").text(selectedRestaurant.phone),
           );
         $("#fave-rest-table > tbody").append(newRow);
           
       });
 
-      restaurantDiv.append(restaurantName);
+      // restaurantDiv.append(restaurantName);
+      restaurantDiv.append(restaurantReserve);
       restaurantDiv.append(restaurantAddress);
       restaurantDiv.append(restaurantPrice);
-      restaurantDiv.append(restaurantReserve);
       restImgHldr.append(restaurantImage);
         restaurantDiv.append(restImgHldr);
         restaurantDiv.append(restaurantFavorite);
@@ -293,3 +295,4 @@ function restaurantAjax(zipcodeInput) {
   });
 }
 });
+
