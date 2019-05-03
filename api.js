@@ -223,7 +223,7 @@ function ajaxCalls() {
           console.log(selectedRestaurant.name);
           
           // -------send restaraunt fave to faves div
-          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).text(selectedRestaurant.name)
+          var restURL = $("<a>").attr("href", selectedRestaurant.reserve_url).text("Make Reservations")
           var newRow = $("<tr>").append(
             $("<td>").text(selectedRestaurant.name),
             $("<td>").text(selectedRestaurant.address),
@@ -237,10 +237,10 @@ function ajaxCalls() {
           
       });
 
-      restaurantDiv.append(restaurantName);
+      // restaurantDiv.append(restaurantName);
+      restaurantDiv.append(restaurantReserve);
       restaurantDiv.append(restaurantAddress);
       restaurantDiv.append(restaurantPrice);
-      restaurantDiv.append(restaurantReserve);
       restImgHldr.append(restaurantImage);
         restaurantDiv.append(restImgHldr);
         restaurantDiv.append(restaurantFavorite);
