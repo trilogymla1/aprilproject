@@ -184,9 +184,7 @@ function eventAjax(dateInput) {
             $("<td>").text(selectedEvent.park_facility_name),
             $("<td>").text(selectedEvent.reservation_start_date),
             $("<td>").text(selectedEvent.reservation_end_date),
-            // $("<td>").text(selectedRestaurant.price),
-            // $("<td>").text(selectedRestaurant.reserve_url),
-            // $("<td>").text(selectedRestaurant.phone),
+           
           );
         $("#fave-event-table > tbody").append(newRow);
         
@@ -208,9 +206,32 @@ function eventAjax(dateInput) {
         var parkName = $("<p>").text("Location: " + response[i].park_facility_name);
         var startDate = $("<p>").text("Start: " + response[i].reservation_start_date);
         var endDate = $("<p>").text("End: " + response[i].reservation_end_date);
-        var eventFavorite = $('<button>Save to Favorites</button>').click(function () {
+        var eventFavorite = $('<button>Save to Favorites</button>')
+        .addClass("favorite-event")
+        .attr("data-index", i)
+        .click(function () {
           event.preventDefault();
-          // console.log('I love it.');
+          console.log($(this).data("index"))
+          var index = $(this).data("index");
+          var selectedEvent = response[index];
+          console.log('*******',selectedEvent);
+          // console.log(JSON.stringify(selectedRestaurant));
+          // var stringRest = JSON.stringify(selectedRestaurant);
+          // objRest = JSON.parse(stringRest);
+          // console.log(objRest);
+          console.log(selectedEvent.event_description);
+          
+          // -------send event fave to faves div
+          var newRow = $("<tr>").append(
+            $("<td>").text(selectedEvent.event_description),
+            $("<td>").text(selectedEvent.park_facility_name),
+            $("<td>").text(selectedEvent.reservation_start_date),
+            $("<td>").text(selectedEvent.reservation_end_date),
+           
+          );
+        $("#fave-event-table > tbody").append(newRow);
+        
+
       });
 
 
