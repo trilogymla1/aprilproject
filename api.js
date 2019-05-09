@@ -65,49 +65,6 @@ $(document).ready(function () {
   }
   // error handling
 
-
-  // function isFutureDate() {
-  //   var target = moment(dateInput, "YYYY-MM-DD");
-  //   if (target.diff(moment(), 'days') < 0) {
-  //      $(".not-future-date").show();
-  //   } else {
-  //     $(".not-future-date").hide();
-  //     ajaxCalls();
-  //   }
-  // }
-
-  // function isValidDate() {
-  //   if (!moment(dateInput, "YYYY-MM-DD", true).isValid()) {
-  //     $(".not-valid-format").show();
-  //   } else {
-  //     $(".not-valid-format").hide();
-  //     ajaxCalls();
-  //   }
-  //   var getYear = dateInput.split("-");
-  //   var year = parseInt(getYear[0], 10);
-  //   console.log(year);
-  //   if (year > 2050) {
-  //     $(".not-valid-date").show()
-  //   } else {
-  //     $(".not-valid-date").hide()
-  //     ajaxCalls()
-  //   }
-  // }
-  // isValidDate();
-
-
-
-  // isFutureDate();
-  // function isValidZipCode() {
-  //     if (zipcodeInput > 60700 || zipcodeInput.length != 5) {
-  //       $(".not-valid-zip").show();
-  //     } else {
-  //       $(".not-valid-zip").hide();
-  //       ajaxCalls();
-  //     }
-  // }
-  // isValidZipCode();
-
   function weatherAjax(zipcodeInput) {
     // var dateInput = "2019-06-29"
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeInput + ",us&units=imperial&APPID=ef9d93c0bbd0f2345d418982ddbebbb7";
